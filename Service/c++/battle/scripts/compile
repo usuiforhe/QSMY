@@ -1,0 +1,29 @@
+#!/bin/bash
+
+template='0.lua'
+
+compile() {
+for filename in `ls *.lua`
+do
+    if [ "$filename" = "$template" ]
+    then
+        continue
+    fi
+    target=${filename//'.lua'/'.luax'}
+    echo 'luac '$filename' -o '$target
+	luac -o $target $filename
+done
+}
+
+cd ./bot
+compile
+cd name
+compile
+cd ..
+cd ../buff
+compile
+cd ../scene
+compile
+cd ../skill
+compile
+cd ..

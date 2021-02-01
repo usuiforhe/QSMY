@@ -1,0 +1,118 @@
+CREATE PROCEDURE `P_GUILD_BOSS_ROB`(in p_user_id int,
+     in p_target_user_id int,
+     in p_guild_id int,
+     in p_target_guild_id int,
+     in p_win int,
+     in p_dmg int,
+     in p_availtimes int,
+     in p_paidtimes int,
+     in p_attackts int,
+     in p_target_formation blob,
+     in p_target_blood int,
+     in p_target_curfight int,
+     in p_target_hurt int)
+BEGIN
+    declare p_date int(12); 
+    declare p_dmg_old int(12);
+    declare p_dmg_add int(12);
+    SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+    SET AUTOCOMMIT = 0;
+select  p_dmg;
+    set p_date = UNIX_TIMESTAMP(CURDATE());
+    set p_dmg_add = p_dmg + 20000;
+    select dmg_for_rob into p_dmg_old from T_USER_GUILD_BOSS where user_id=p_target_user_id and today = p_date;
+    if p_dmg_old < p_dmg
+    then
+	set p_dmg = p_dmg_old;
+	set p_dmg_add = p_dmg_old + 20000;
+    end if;
+    -- update user
+    IF(p_user_id > p_target_user_id)
+    then
+	UPDATE T_USER_GUILD_BOSS
+	SET dmg_total = dmg_total - p_dmg,
+	rob_dmg = rob_dmg - p_dmg,
+	rob_dmg_daily = rob_dmg_daily - p_dmg,
+	dmg_daily = dmg_daily - p_dmg,
+	dmg_for_rob = dmg_for_rob-p_dmg,
+	rob_blood = p_target_blood,
+	cur_fight = p_target_curfight,
+	formation = p_target_formation,
+	hurt_ts = p_target_hurt	
+	WHERE user_id=p_target_user_id and today=p_date;
+
+	update T_USER_GUILD_BOSS
+	set dmg_total = dmg_total + p_dmg_add,
+	rob_dmg = rob_dmg + p_dmg_add,
+	rob_dmg_daily = rob_dmg_daily + p_dmg_add,
+	dmg_daily = dmg_daily + p_dmg_add,
+	attack_ts = p_attackts,
+	paid_times = p_paidtimes,
+	avail_times = p_availtimes
+	where user_id=p_user_id AND today=p_date;
+    else
+	UPDATE T_USER_GUILD_BOSS
+	SET dmg_total = dmg_total + p_dmg_add,
+	rob_dmg = rob_dmg + p_dmg_add,
+	rob_dmg_daily = rob_dmg_daily + p_dmg_add,
+	dmg_daily = dmg_daily + p_dmg_add,
+	attack_ts = p_attackts,
+	paid_times = p_paidtimes,
+	avail_times = p_availtimes
+	WHERE user_id=p_user_id AND today=p_date;
+	
+	UPDATE T_USER_GUILD_BOSS
+	SET dmg_total = dmg_total - p_dmg,
+	rob_dmg = rob_dmg - p_dmg,
+	rob_dmg_daily = rob_dmg_daily - p_dmg,
+	dmg_daily = dmg_daily - p_dmg,
+	dmg_for_rob = dmg_for_rob-p_dmg,
+	rob_blood = p_target_blood,
+	cur_fight = p_target_curfight,
+	formation = p_target_formation,
+	hurt_ts = p_target_hurt
+	WHERE user_id=p_target_user_id AND today=p_date;
+	
+	
+    end if;
+    -- update guild
+    if p_guild_id < p_target_guild_id
+    then
+	UPDATE T_GUILD_BOSS SET
+        dmg = dmg + p_dmg_add,
+        dmg_daily = dmg_daily +p_dmg_add,
+        rob_dmg_daily = rob_dmg_daily +p_dmg_add
+        WHERE guild_id = p_guild_id AND today=p_date;
+        
+        UPDATE T_GUILD_BOSS SET 
+	dmg = dmg -p_dmg,
+	dmg_daily = dmg_daily-p_dmg,
+	rob_dmg_daily = rob_dmg_daily - p_dmg
+	WHERE guild_id=p_target_guild_id AND today=p_date;
+    else 
+	update T_GUILD_BOSS set 
+	dmg = dmg -p_dmg,
+	dmg_daily = dmg_daily-p_dmg,
+	rob_dmg_daily = rob_dmg_daily - p_dmg
+	where guild_id=p_target_guild_id AND today=p_date;
+	
+	UPDATE T_GUILD_BOSS SET
+        dmg = dmg + p_dmg_add,
+        dmg_daily = dmg_daily + p_dmg_add,
+        rob_dmg_daily = rob_dmg_daily +p_dmg_add
+        WHERE guild_id = p_guild_id AND today=p_date;
+    end if;
+    -- update hatred
+    if not exists(select id from T_GUILD_BOSS_HATRED where guild_id=p_guild_id and  target_id=p_target_guild_id)
+    then
+	insert into T_GUILD_BOSS_HATRED(guild_id,target_id,dmg)
+	values(p_guild_id,p_target_guild_id,p_dmg);
+    else
+	update T_GUILD_BOSS_HATRED
+	set dmg = dmg+p_dmg
+	where guild_id=p_guild_id
+	and target_id = p_target_guild_id;
+    end if;
+    commit;
+    select p_dmg_add,dmg_for_rob from T_USER_GUILD_BOSS where user_id=p_target_user_id AND today=p_date;
+    END

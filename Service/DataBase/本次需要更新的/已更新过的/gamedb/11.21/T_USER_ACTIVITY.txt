@@ -1,0 +1,3 @@
+ALTER TABLE `T_USER_ACTIVITY`
+ADD COLUMN `signFirstRound`  int(4) NULL DEFAULT 0 COMMENT '是否为首轮签到' AFTER `sign_round`;
+

@@ -1,0 +1,3 @@
+ALTER TABLE `T_USER`
+ADD COLUMN `new_award_version`  int(10) NOT NULL DEFAULT 0 COMMENT '新的全服邮件奖励领取号码' AFTER `last_rush_ts`;
+

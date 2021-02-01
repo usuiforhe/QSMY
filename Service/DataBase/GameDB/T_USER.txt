@@ -1,0 +1,4 @@
+ALTER TABLE `T_USER`
+ADD COLUMN `device_type`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设备类型' AFTER `logout_ts`,
+ADD INDEX `reg_ts` (`reg_ts`) ;
+

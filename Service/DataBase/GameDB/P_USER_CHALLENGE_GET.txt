@@ -1,0 +1,96 @@
+CREATE PROCEDURE `P_USER_CHALLENGE_GET`(IN p_user_id INT UNSIGNED,
+	IN p_time INT UNSIGNED)
+BEGIN
+	DECLARE v_rank,v_count,v_level,v_leader_sid, v_leader_level, v_leader_dress_id INT UNSIGNED;
+	DECLARE v_name VARCHAR(50);
+
+	SELECT U.user_name, U.user_lv, W.warrior_id, W.warrior_lv, W.dress_id 
+		INTO v_name, v_level, v_leader_sid, v_leader_level, v_leader_dress_id
+	FROM T_USER U 
+		INNER JOIN T_USER_FORMATION F 
+			ON U.user_id = p_user_id AND F.user_id = U.user_id AND F.pos_status = 2
+		INNER JOIN T_USER_WARRIOR W 
+			ON W.user_id = U.user_id AND F.warrior_id = W.warrior_id;
+
+	SELECT COUNT(1) INTO v_count
+		FROM T_USER_CHALLENGE
+	WHERE `user_id` = p_user_id;
+
+	IF(v_count = 0) THEN
+		INSERT INTO `T_USER_CHALLENGE`
+		(
+			`user_id`,
+			`name`,
+			`level`,
+			`leader_sid`,
+			`leader_level`,
+			`best_rank`,
+			`rank`,
+			`rank_ts`,
+			`point`,
+			`remain_ch_times`,
+			`last_ch_ts`,
+			`boss_win_times`,
+			`boss_times`,
+			`last_boss_ts`,
+			`rewards`,
+			`leader_dress_id`
+		)
+		VALUES
+		(
+			p_user_id, 
+			v_name, 
+			v_level, 
+			v_leader_sid, 
+			v_leader_level, 
+			0,
+			0,
+			p_time,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			'[]',
+			v_leader_dress_id
+		);
+
+		UPDATE `T_USER_CHALLENGE`
+		SET `rank` = `id`,
+			`best_rank` = `id`
+		WHERE `user_id` = p_user_id;
+	ELSE
+		UPDATE `T_USER_CHALLENGE`
+		SET `name` = v_name,
+			`level` = v_level,
+			`leader_sid` = v_leader_sid,
+			`leader_level` = v_leader_level,
+			`leader_dress_id` = v_leader_dress_id
+		WHERE `user_id` = p_user_id;
+	END IF;
+
+	SELECT
+		`name`,
+		`level`,
+		`leader_sid`,
+		`leader_level`,
+		`best_rank`,
+		`rank`,
+		`rank_ts`,
+		`point`,
+		`remain_ch_times`,
+		`last_ch_ts`,
+		`boss_times`,
+		`boss_win_times`,
+		`last_boss_ts`,
+		`rewards`,
+		`leader_dress_id`,
+		`win`,
+		`lose`,
+		`my_win`,
+		`my_lose`
+	FROM `T_USER_CHALLENGE`
+	WHERE `user_id` = p_user_id;
+
+END

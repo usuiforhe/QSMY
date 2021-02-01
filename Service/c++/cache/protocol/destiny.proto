@@ -1,0 +1,58 @@
+package cache;
+
+//天命
+message proDestiny{
+    required uint32 destiny_id = 1;         //静态编号
+    required uint32 type = 2;               //类型
+    required uint32 level = 3;              //等级
+    required uint32 reward_ts = 4;          //领奖时间
+    required uint32 num1 = 5;               //槽位1数量
+    optional uint32 num2 = 6;               //槽位2数量
+    optional uint32 num3 = 7;               //槽位3数量
+    optional uint32 num4 = 8;               //槽位4数量
+    optional uint32 num5 = 9;               //槽位5数量
+    optional uint32 num6 = 10;              //槽位6数量
+}
+
+//获得天命 返回proDestinyRes
+message proGetDestiny{
+    required uint32 user_id = 1;            //玩家编号
+    required uint32 destiny_id = 2;         //天命编号
+}
+
+//获得天命列表 返回proDestiniesRes
+message proGetDestinies{
+    required uint32 user_id = 1;            //玩家编号
+    optional uint32 type = 2;               //天命类型
+}
+
+//保存天命 返回proRes
+message proSaveDestiny{
+    required uint32 user_id = 1;            //玩家编号
+    required proDestiny destiny = 2;        //天命信息
+}
+
+//天命消耗的魂魄
+message proDestinySoul{
+	required uint32 soul_id = 1;
+	required uint32 num = 2;
+}
+
+//提升天命 返回proRes
+message proImproveDestiny{
+    required uint32 user_id = 1;            			//玩家编号
+    repeated proDestinySoul consume_souls = 2;          //消耗魂魄
+    required proDestiny destiny = 3;        			//天命信息
+}
+
+//包含天命的结果
+message proDestinyRes{
+    required uint32 code = 1;               //错误码
+    optional proDestiny destiny = 2;        //天命信息
+}
+
+//包含天命列表的结果
+message proDestiniesRes{
+    required uint32 code = 1;               //错误码
+    repeated proDestiny destinies = 2;      //天命列表
+}

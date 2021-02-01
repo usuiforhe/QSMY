@@ -1,0 +1,6 @@
+ALTER TABLE `T_USER_FROZEN`
+DROP COLUMN `op_name`,
+DROP COLUMN `op_time`,
+ADD COLUMN `op_name`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `deadline`,
+ADD COLUMN `op_time`  timestamp NULL DEFAULT '' AFTER `op_name`;
+

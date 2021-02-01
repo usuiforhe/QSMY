@@ -1,0 +1,11 @@
+
+//--------------更新
+
+ALTER TABLE `T_LOG_SYS_UTIL`
+ADD COLUMN `sign_up_new`  bit(1) NOT NULL COMMENT '是否使用签到' AFTER `sign_up`,
+ADD COLUMN `warrior_enhance`  bit(1) NOT NULL AFTER `eat_chicken`,
+ADD COLUMN `skill_enhance`  bit(1) NOT NULL AFTER `warrior_enhance`,
+ADD COLUMN `refining`  bit(1) NOT NULL AFTER `skill_enhance`,
+ADD COLUMN `wish`  bit(1) NOT NULL AFTER `refining`,
+ADD COLUMN `explore_rush`  bit(1) NOT NULL AFTER `wish`,
+ADD COLUMN `explore_onemore`  bit(1) NOT NULL AFTER `explore_rush`

@@ -1,0 +1,4 @@
+需要清理缓存KEY：USER_SHARE
+
+ALTER TABLE `T_USER_REQUEST_SHARE`
+ADD COLUMN `share_award`  tinyint NOT NULL COMMENT '领取为0，未领取为1' AFTER `update_ts`;

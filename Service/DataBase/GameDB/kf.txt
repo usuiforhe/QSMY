@@ -1,0 +1,29 @@
+INSERT INTO P_USER_KFREWARD_LEVEL (plat_id,`level`) SELECT plat_id, `user_lv` from T_USER where `user_lv` >= 20;
+
+
+INSERT INTO P_USER_KFREWARD_CHARGE (plat_id,`vip_points`, total_points, points)
+SELECT T_USER.plat_id, T_USER_MONEY.`total_points` AS vip_points, (T_USER_MONEY.`total_points` * 2) AS total_points, (T_USER_MONEY.`total_points` / 1.5) AS points from T_USER_MONEY, T_USER where T_USER_MONEY.`total_points` >= 1 AND T_USER_MONEY.user_id = T_USER.user_id;
+
+
+以上语言先别执行，等通知。先建立表
+
+CREATE TABLE `P_USER_KFREWARD_LEVEL` (
+  `id` int(12) NOT NULL AUTO_INCREMENT COMMENT '自增',
+  `plat_id` varchar(128) NOT NULL COMMENT '平台用户名',
+  `level` int(12) NOT NULL DEFAULT '0' COMMENT '等级',
+  `state` int(11) NOT NULL DEFAULT '0' COMMENT '状态',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `plat_id` (`plat_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `P_USER_KFREWARD_CHARGE` (
+  `id` int(12) NOT NULL AUTO_INCREMENT COMMENT '自增',
+  `plat_id` varchar(128) NOT NULL COMMENT '平台用户名',
+  `vip_points` int(12) NOT NULL DEFAULT '0' COMMENT 'VIP积分',
+  `total_points` int(12) NOT NULL DEFAULT '0' COMMENT '充值总元宝',
+  `points` int(12) NOT NULL DEFAULT '0' COMMENT '充值的金额',
+  `state` int(11) NOT NULL DEFAULT '0' COMMENT '状态',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `plat_id` (`plat_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

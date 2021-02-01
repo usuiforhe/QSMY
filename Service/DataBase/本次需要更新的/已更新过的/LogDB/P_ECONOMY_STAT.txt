@@ -1,0 +1,167 @@
+CREATE PROCEDURE `P_ECONOMY_STAT`(IN p_date DATE)
+BEGIN
+	DECLARE v_max_date DATE;
+	SET v_max_date = DATE_ADD(p_date, INTERVAL 1 DAY);
+    TRUNCATE TABLE T_ECONOMY_TODAY;
+    INSERT INTO T_ECONOMY_TODAY
+    (user_id,`type`, vip, item_type, item_id,item_num)
+    SELECT A.user_id,1, A.vip,1,B.related1, B.get_num
+    FROM T_KPI_USER A 
+    inner JOIN 
+    (
+      SELECT user_id, related1, SUM(related2) get_num
+      FROM T_LOG_RECENT
+      WHERE log_ts >= UNIX_TIMESTAMP(p_date) AND log_ts < UNIX_TIMESTAMP(v_max_date)
+      AND operate_id = 1001 and related1 in (10018,10011,10012,10013,10014,10015,10016,10019,10020,10017,10024,10004)
+      GROUP BY user_id, related1
+    ) B
+    ON A.user_id = B.user_id;
+
+#9011	ÅàÑøµ¤	10018
+#9021	¼Ù³ÈÉ«Ô¿³×	10011
+#9022	¼Ù×ÏÉ«Ô¿³×	10012
+#9023	¼ÙÀ¶É«Ô¿³×	10013
+#9024	¼Ù³ÈÉ«±¦Ïä	10014
+#9025	¼Ù×ÏÉ«±¦Ïä	10015
+#9026	¼ÙÀ¶É«±¦Ïä	10016
+#9027	ÄÚÁ¦µ¤	10019
+#9032 ÌìµÆ 10020
+
+   INSERT INTO T_ECONOMY_TODAY
+    (user_id,`type`, vip, item_type, item_id,item_num)
+    SELECT A.user_id,1, A.vip,2,0, B.get_num
+    FROM T_KPI_USER A 
+    INNER JOIN 
+    (
+      SELECT user_id, SUM(related1) get_num
+      FROM T_LOG_RECENT
+      WHERE log_ts >= UNIX_TIMESTAMP(p_date) AND log_ts < UNIX_TIMESTAMP(v_max_date)
+      AND operate_id = 1811 
+      GROUP BY user_id
+    ) B
+    ON A.user_id = B.user_id;    
+    
+    INSERT INTO T_ECONOMY_TODAY
+    (user_id,`type`, vip, item_type, item_id,item_num)
+    SELECT A.user_id,1, A.vip,3,0, B.get_num
+    FROM T_KPI_USER A 
+    INNER JOIN 
+    (
+      SELECT user_id, SUM(related1) get_num
+      FROM T_LOG_RECENT
+      WHERE log_ts >= UNIX_TIMESTAMP(p_date) AND log_ts < UNIX_TIMESTAMP(v_max_date)
+      AND operate_id = 1813 
+      GROUP BY user_id
+    ) B
+    ON A.user_id = B.user_id;  
+    
+	INSERT INTO T_ECONOMY_TODAY
+    (user_id,`type`, vip, item_type, item_id,item_num)
+    SELECT A.user_id,1, A.vip,4,B.related3, B.get_num
+    FROM T_KPI_USER A 
+    INNER JOIN 
+    (
+      SELECT user_id, related3,SUM(related2) get_num
+      FROM T_LOG_RECENT
+      WHERE log_ts >= UNIX_TIMESTAMP(p_date) AND log_ts < UNIX_TIMESTAMP(v_max_date)
+      AND operate_id = 2401 
+      GROUP BY user_id,related3
+    ) B
+    ON A.user_id = B.user_id;  
+    
+    INSERT INTO T_ECONOMY_TODAY
+    (user_id,`type`, vip, item_type, item_id,item_num)
+    SELECT A.user_id,2, A.vip,1,B.related1, B.get_num
+    FROM T_KPI_USER A 
+    INNER JOIN 
+    (
+      SELECT user_id, related1, SUM(related2) get_num
+      FROM T_LOG_RECENT
+      WHERE log_ts >= UNIX_TIMESTAMP(p_date) AND log_ts < UNIX_TIMESTAMP(v_max_date)
+      AND operate_id = 1003 AND related1 IN (10018,10011,10012,10013,10014,10015,10016,10019,10020,10017,10024,10004)
+      GROUP BY user_id, related1
+    ) B
+    ON A.user_id = B.user_id;
+    
+   INSERT INTO T_ECONOMY_TODAY
+    (user_id,`type`, vip, item_type, item_id,item_num)
+    SELECT A.user_id,2, A.vip,2,0, B.get_num
+    FROM T_KPI_USER A 
+    INNER JOIN 
+    (
+      SELECT user_id, SUM(related1) get_num
+      FROM T_LOG_RECENT
+      WHERE log_ts >= UNIX_TIMESTAMP(p_date) AND log_ts < UNIX_TIMESTAMP(v_max_date)
+      AND operate_id = 1812
+      GROUP BY user_id
+    ) B
+    ON A.user_id = B.user_id;    
+    
+    INSERT INTO T_ECONOMY_TODAY
+    (user_id,`type`, vip, item_type, item_id,item_num)
+    SELECT A.user_id,2, A.vip,3,0, B.get_num
+    FROM T_KPI_USER A 
+    INNER JOIN 
+    (
+      SELECT user_id, SUM(related2) get_num
+      FROM T_LOG_RECENT
+      WHERE log_ts >= UNIX_TIMESTAMP(p_date) AND log_ts < UNIX_TIMESTAMP(v_max_date)
+      AND operate_id = 1601
+      GROUP BY user_id
+    ) B
+    ON A.user_id = B.user_id;      
+    INSERT INTO T_ECONOMY_TODAY
+    (user_id,`type`, vip, item_type, item_id,item_num)
+    SELECT A.user_id,2, A.vip,4,B.related3, B.get_num
+    FROM T_KPI_USER A 
+    INNER JOIN 
+    (
+      SELECT user_id, related3,SUM(related2) get_num
+      FROM T_LOG_RECENT
+      WHERE log_ts >= UNIX_TIMESTAMP(p_date) AND log_ts < UNIX_TIMESTAMP(v_max_date)
+      AND operate_id = 2403
+      GROUP BY user_id,related3
+    ) B
+    ON A.user_id = B.user_id;   
+    
+    
+    insert into T_ECONOMY_STAT(`date`, item_type, item_id, get_r, use_r, get_ur, use_ur)
+    select DISTINCT p_date, item_type , item_id, 0, 0, 0, 0 FROM T_ECONOMY_TODAY;
+	
+	UPDATE T_ECONOMY_STAT A
+	INNER JOIN 
+	(
+		SELECT item_id,item_type, SUM(item_num) amount FROM T_ECONOMY_TODAY WHERE vip >= 2 AND vip <= 15 and `type`=1 GROUP BY item_type, item_id
+	) B
+	ON( A.item_id = B.item_id and A.item_type = B.item_type)
+	SET A.get_r = B.amount
+	WHERE A.`date` = p_date;
+	UPDATE T_ECONOMY_STAT A
+	INNER JOIN 
+	(
+		SELECT item_id,item_type, SUM(item_num) amount FROM T_ECONOMY_TODAY WHERE vip >= 2 AND vip <= 15 AND `type`=2 GROUP BY item_type, item_id
+	) B
+	ON( A.item_id = B.item_id AND A.item_type = B.item_type)
+	SET A.use_r = B.amount
+	WHERE A.`date` = p_date;
+	
+	
+	UPDATE T_ECONOMY_STAT A
+	INNER JOIN 
+	(
+		SELECT item_id,item_type, SUM(item_num) amount FROM T_ECONOMY_TODAY WHERE vip < 2 AND `type`=1 GROUP BY item_type, item_id
+	) B
+	ON( A.item_id = B.item_id AND A.item_type = B.item_type)
+	SET A.get_ur = B.amount
+	WHERE A.`date` = p_date;
+	
+	UPDATE T_ECONOMY_STAT A
+	INNER JOIN 
+	(
+		SELECT item_id,item_type, SUM(item_num) amount FROM T_ECONOMY_TODAY WHERE vip < 2 AND `type`=2 GROUP BY item_type, item_id
+	) B
+	ON( A.item_id = B.item_id AND A.item_type = B.item_type)
+	SET A.use_ur = B.amount
+	WHERE A.`date` = p_date;
+      
+END

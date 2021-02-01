@@ -1,0 +1,6 @@
+ALTER TABLE `T_USER_ACTIVITY`
+ADD COLUMN `specia_sign_in_times`  int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '特殊活动签到次数（圣诞签到等）' AFTER `online_gift_ts`,
+ADD COLUMN `specia_sign_in_ts`  int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '特殊活动签到上次签到时间（圣诞签到等）' AFTER `specia_sign_in_times`;
+
+ALTER TABLE `T_USER_ACTIVITY`
+ADD COLUMN `specia_sign_in_award`  int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '特殊签到奖励领取状态' AFTER `specia_sign_in_ts`;

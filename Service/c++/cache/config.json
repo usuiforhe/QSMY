@@ -1,0 +1,26 @@
+{
+    //监听端口
+    "port":12333,
+    //http监控端口
+    "http_port":12334,
+    //缓存大小
+    "cache_capacity":1000,
+    //io线程数
+    "io_thread_count":2,
+    //请求处理线程数
+    "handle_thread_count":32,
+    //数据库异步操作线程数
+    "db_op_thread_count":2,
+    //数据库
+    "mysql_server":"tcp://10.10.1.162:3306",
+    //数据库
+    "mysql_db":"PiLi_GameDB",
+    //用户名
+    "mysql_user":"uws_pili",
+    //密码
+    "mysql_password":"123456",
+    //连接池上限
+    "mysql_conn_pool_max":48,
+    //延迟更新时间
+    "write_delay":60
+}

@@ -1,0 +1,9 @@
+ALTER TABLE `T_USER_CHAPTER`
+ADD COLUMN `activity_award`  tinyint(1) UNSIGNED NULL DEFAULT 0 COMMENT '活动副本奖励' AFTER `video_award`
+
+PS：要删除CHAPTER相关REDIS的KEY
+
+ALTER TABLE `T_USER_EXPLORE`
+ADD COLUMN `last_explore_ts`  int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '最后一次探索时间' AFTER `last_battle_ts`
+
+PS：要删除EXPLORE相关REDIS的KEY

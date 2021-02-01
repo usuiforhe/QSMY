@@ -1,0 +1,4 @@
+ALTER TABLE `T_USER_TOWER`
+DROP COLUMN `points`,
+ADD COLUMN `points`  int(12) NOT NULL DEFAULT 0 COMMENT '»ý·Ö' AFTER `last_hard`;
+

@@ -1,0 +1,65 @@
+CREATE PROCEDURE `P_PAYMENT_STAT`(IN p_date DATE)
+BEGIN
+	DECLARE v_max_date DATE;
+	SET v_max_date = DATE_ADD(p_date, INTERVAL 1 DAY);
+
+    TRUNCATE TABLE T_PAYMENT_TODAY;
+
+    INSERT INTO T_PAYMENT_TODAY
+    (user_id, vip, `type`, product_id, points)
+    SELECT A.user_id, A.vip, B.con_type, B.con_id, B.points 
+    FROM T_KPI_USER A 
+    INNER JOIN 
+    (
+      /*SELECT user_id, con_type, con_id, SUM(points) points 
+      FROM PiLi_GameDB.T_USER_CONSUME
+      WHERE con_ts >= p_date AND con_ts < v_max_date
+      GROUP BY user_id, con_type, con_id*/
+			SELECT user_id, 1 con_type, con_id, SUM(points) points 
+      FROM PiLi_GameDB.T_USER_CONSUME
+      WHERE con_ts >= p_date AND con_ts < v_max_date
+      GROUP BY user_id,  con_id
+		
+    ) B
+    ON A.user_id = B.user_id;
+
+	INSERT INTO T_PAYMENT_STAT
+	(`date`, sys_type, product_id, huge, large, normal, little)
+	SELECT DISTINCT p_date, `type`, product_id, 0, 0, 0, 0 FROM T_PAYMENT_TODAY;
+
+	UPDATE T_PAYMENT_STAT A
+	INNER JOIN 
+	(
+		SELECT product_id, SUM(points) amount FROM T_PAYMENT_TODAY WHERE vip >= 12 AND vip <= 15 GROUP BY product_id
+	) B
+	ON A.product_id = B.product_id
+	SET A.huge = B.amount
+	WHERE A.`date` = p_date;
+
+	UPDATE T_PAYMENT_STAT A
+	INNER JOIN 
+	(
+		SELECT product_id, SUM(points) amount FROM T_PAYMENT_TODAY WHERE vip >= 9 AND vip <= 11 GROUP BY product_id
+	) B
+	ON A.product_id = B.product_id
+	SET A.large = B.amount
+	WHERE A.`date` = p_date;
+
+	UPDATE T_PAYMENT_STAT A
+	INNER JOIN 
+	(
+		SELECT product_id, SUM(points) amount FROM T_PAYMENT_TODAY WHERE vip >= 5 AND vip <= 8 GROUP BY product_id
+	) B
+	ON A.product_id = B.product_id
+	SET A.normal = B.amount
+	WHERE A.`date` = p_date;
+
+	UPDATE T_PAYMENT_STAT A
+	INNER JOIN 
+	(
+		SELECT product_id, SUM(points) amount FROM T_PAYMENT_TODAY WHERE vip >= 2 AND vip <= 4 GROUP BY product_id
+	) B
+	ON A.product_id = B.product_id
+	SET A.little = B.amount
+	WHERE A.`date` = p_date;
+END

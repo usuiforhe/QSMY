@@ -1,0 +1,54 @@
+package cache;
+
+//道具
+message proItem{
+    required uint32 item_id = 1;        //静态编号
+    required uint32 num = 2;            //数量
+}
+
+//获得道具 返回proItemRes
+message proGetItem{
+    required uint32 user_id = 1;        //玩家编号
+    required uint32 item_id = 2;        //道具编号
+}
+
+//获得道具列表 返回proItemsRes
+message proGetItems{
+    required uint32 user_id = 1;        //玩家编号
+}
+
+//添加道具 返回proRes
+message proAddItem{
+    required uint32 user_id = 1;        //玩家编号
+    required proItem item = 2;          //道具信息
+}
+
+//批量添加道具 返回proRes
+message proAddItems{
+    required uint32 user_id = 1;        //玩家编号
+    repeated proItem items = 2;         //道具列表
+}
+
+//删除道具 返回proRes
+message proRemoveItem{
+    required uint32 user_id = 1;        //玩家编号
+    required proItem item = 2;          //道具信息
+}
+
+//批量删除道具 返回proRes
+message proRemoveItems{
+    required uint32 user_id = 1;        //玩家编号
+    repeated proItem items = 2;         //道具列表
+}
+
+//包含道具的结果
+message proItemRes{
+    required uint32 code = 1;           //错误码
+    optional proItem item = 2;          //道具信息
+}
+
+//包含道具列表的结果
+message proItemsRes{
+    required uint32 code = 1;           //错误码
+    repeated proItem items = 2;         //道具列表
+}

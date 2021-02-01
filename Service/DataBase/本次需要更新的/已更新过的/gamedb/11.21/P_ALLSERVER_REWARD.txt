@@ -1,0 +1,11 @@
+CREATE TABLE `P_ALLSERVER_REWARD` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `reward_id` int(11) unsigned NOT NULL COMMENT '奖励ID',
+  `mail_title` varchar(32) NOT NULL COMMENT '邮件标题',
+  `mail_content` varchar(512) NOT NULL COMMENT '邮件内容',
+  `attachment` varchar(512) DEFAULT NULL COMMENT '附件信息',
+  `start_ts` date DEFAULT NULL COMMENT '开始时间',
+  `end_ts` date DEFAULT NULL COMMENT '结束时间',
+  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8

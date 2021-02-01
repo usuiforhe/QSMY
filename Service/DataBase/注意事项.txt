@@ -1,0 +1,46 @@
+服务器DB更新规范
+
+平台名  +  实例名 + 表名
+
+例如
+wegame + gamedb + T_User
+
+陆续增加
+
+wegame  台湾
+PP	PP平台
+沙箱	沙箱
+
+============================================
+
+[[[注意数据库的访问权限开放问题]]]]
+
+
+1、PiLi_GameDB  
+
+T_USER_CHALLENGE 自增ID 10000 开始
+
+
+2、PiLi_PlatformDB
+
+T_USER_GENERATEKEY 自增ID 10000 开始
+
+
+3、数据库数据保留
+
+PiLi_AdminDB
+	1  admin_user
+	2  T_MODULE
+	3  T_SYS_ACTIVITY
+	4  T_SYS_CONSUME_TYPE
+
+PiLi_GameDB
+	1  T_SYS_FILTER
+	2  T_SYS_NAME
+	3  T_SYS_NAME_CANDIDATE
+	4  T_SYS_NAME_FORBIDDEN
+
+4、PiLi_LogDB
+	存储过程访问GAMEDB实例名 P_EQUIP_STAT P_KPI P_PAYMENT_STAT P_WARRIOR_STAT 这4个请注意修改
+
+	P_ARCHIVE_LOG P_ECONOMY_STAT 内网是最新的

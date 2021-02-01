@@ -1,0 +1,4 @@
+ALTER TABLE `P_USER_LIMIT_TIME_DRAW_CARD`
+ADD COLUMN `activity_id`  int(11) UNSIGNED NOT NULL AFTER `id`,
+DROP INDEX `user_id` ,
+ADD UNIQUE INDEX `user_id` (`user_id`, `activity_id`) USING BTREE;

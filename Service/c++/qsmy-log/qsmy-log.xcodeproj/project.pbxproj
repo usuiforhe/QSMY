@@ -1,0 +1,349 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E160CAB174B13B200A55897 /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E160CA9174B13B200A55897 /* config.cpp */; };
+		1E160CAE174B13C200A55897 /* log_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E160CAC174B13C200A55897 /* log_service.cpp */; };
+		1E160CB0174B158B00A55897 /* config.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E160CAF174B14B900A55897 /* config.json */; };
+		1E160CB3174B15AD00A55897 /* liblatte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CB2174B15AD00A55897 /* liblatte.a */; };
+		1E160CBC174B15CF00A55897 /* libboost_chrono.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CB4174B15CF00A55897 /* libboost_chrono.a */; };
+		1E160CBD174B15CF00A55897 /* libboost_date_time.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CB5174B15CF00A55897 /* libboost_date_time.dylib */; };
+		1E160CBE174B15CF00A55897 /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CB6174B15CF00A55897 /* libboost_filesystem.dylib */; };
+		1E160CBF174B15CF00A55897 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CB7174B15CF00A55897 /* libboost_system.dylib */; };
+		1E160CC0174B15CF00A55897 /* libboost_thread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CB8174B15CF00A55897 /* libboost_thread.dylib */; };
+		1E160CC1174B15CF00A55897 /* libmysqlclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CB9174B15CF00A55897 /* libmysqlclient.a */; };
+		1E160CC2174B15D000A55897 /* libmysqlcppconn-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CBA174B15CF00A55897 /* libmysqlcppconn-static.a */; };
+		1E160CC3174B15D000A55897 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E160CBB174B15CF00A55897 /* libprotobuf.a */; };
+		1E160CC7174B1E0A00A55897 /* log_model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E160CC5174B1E0A00A55897 /* log_model.cpp */; };
+		1E160CC9174B4D2C00A55897 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E160CC8174B4D2C00A55897 /* main.cpp */; };
+		1E160CCF174B6BB500A55897 /* scheduler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E160CCD174B6BB500A55897 /* scheduler.cpp */; };
+		1E160CD2174B6D2B00A55897 /* archive_task.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E160CD0174B6D2B00A55897 /* archive_task.cpp */; };
+		1E7C0A7818460FF90047E880 /* log_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E7C0A7618460FF90047E880 /* log_queue.cpp */; };
+		1E90D3321761BA3500343B2A /* sys_utility_model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E90D3301761BA3400343B2A /* sys_utility_model.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1E160C9A174B123A00A55897 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				1E160CB0174B158B00A55897 /* config.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1E160C9C174B123A00A55897 /* qsmy-log */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "qsmy-log"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E160CA8174B13A600A55897 /* log_prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = log_prefix.h; sourceTree = SOURCE_ROOT; };
+		1E160CA9174B13B200A55897 /* config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = config.cpp; sourceTree = SOURCE_ROOT; };
+		1E160CAA174B13B200A55897 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = SOURCE_ROOT; };
+		1E160CAC174B13C200A55897 /* log_service.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log_service.cpp; sourceTree = SOURCE_ROOT; };
+		1E160CAD174B13C200A55897 /* log_service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_service.h; sourceTree = SOURCE_ROOT; };
+		1E160CAF174B14B900A55897 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = SOURCE_ROOT; };
+		1E160CB2174B15AD00A55897 /* liblatte.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblatte.a; path = "../../../../../SDK/server/c++/release/lib/mac/liblatte.a"; sourceTree = "<group>"; };
+		1E160CB4174B15CF00A55897 /* libboost_chrono.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_chrono.a; path = ../../../../../../../../../usr/local/lib/libboost_chrono.a; sourceTree = "<group>"; };
+		1E160CB5174B15CF00A55897 /* libboost_date_time.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_date_time.dylib; path = ../../../../../../../../../usr/local/lib/libboost_date_time.dylib; sourceTree = "<group>"; };
+		1E160CB6174B15CF00A55897 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../../../../../../usr/local/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
+		1E160CB7174B15CF00A55897 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../../../../usr/local/lib/libboost_system.dylib; sourceTree = "<group>"; };
+		1E160CB8174B15CF00A55897 /* libboost_thread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_thread.dylib; path = ../../../../../../../../../usr/local/lib/libboost_thread.dylib; sourceTree = "<group>"; };
+		1E160CB9174B15CF00A55897 /* libmysqlclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmysqlclient.a; path = ../../../../../../../../../usr/local/lib/libmysqlclient.a; sourceTree = "<group>"; };
+		1E160CBA174B15CF00A55897 /* libmysqlcppconn-static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmysqlcppconn-static.a"; path = "../../../../../../../../../usr/local/lib/libmysqlcppconn-static.a"; sourceTree = "<group>"; };
+		1E160CBB174B15CF00A55897 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = ../../../../../../../../../usr/local/lib/libprotobuf.a; sourceTree = "<group>"; };
+		1E160CC5174B1E0A00A55897 /* log_model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log_model.cpp; sourceTree = SOURCE_ROOT; };
+		1E160CC6174B1E0A00A55897 /* log_model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_model.h; sourceTree = SOURCE_ROOT; };
+		1E160CC8174B4D2C00A55897 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		1E160CCD174B6BB500A55897 /* scheduler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scheduler.cpp; sourceTree = SOURCE_ROOT; };
+		1E160CCE174B6BB500A55897 /* scheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheduler.h; sourceTree = SOURCE_ROOT; };
+		1E160CD0174B6D2B00A55897 /* archive_task.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = archive_task.cpp; sourceTree = SOURCE_ROOT; };
+		1E160CD1174B6D2B00A55897 /* archive_task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = archive_task.h; sourceTree = SOURCE_ROOT; };
+		1E7C0A7618460FF90047E880 /* log_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log_queue.cpp; sourceTree = SOURCE_ROOT; };
+		1E7C0A7718460FF90047E880 /* log_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_queue.h; sourceTree = SOURCE_ROOT; };
+		1E90D3301761BA3400343B2A /* sys_utility_model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sys_utility_model.cpp; sourceTree = SOURCE_ROOT; };
+		1E90D3311761BA3500343B2A /* sys_utility_model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sys_utility_model.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1E160C99174B123A00A55897 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E160CB3174B15AD00A55897 /* liblatte.a in Frameworks */,
+				1E160CBC174B15CF00A55897 /* libboost_chrono.a in Frameworks */,
+				1E160CBD174B15CF00A55897 /* libboost_date_time.dylib in Frameworks */,
+				1E160CBE174B15CF00A55897 /* libboost_filesystem.dylib in Frameworks */,
+				1E160CBF174B15CF00A55897 /* libboost_system.dylib in Frameworks */,
+				1E160CC0174B15CF00A55897 /* libboost_thread.dylib in Frameworks */,
+				1E160CC1174B15CF00A55897 /* libmysqlclient.a in Frameworks */,
+				1E160CC2174B15D000A55897 /* libmysqlcppconn-static.a in Frameworks */,
+				1E160CC3174B15D000A55897 /* libprotobuf.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E160C93174B123A00A55897 = {
+			isa = PBXGroup;
+			children = (
+				1E160CC4174B1A2800A55897 /* Config */,
+				1E160CB1174B15A300A55897 /* Lib */,
+				1E160C9E174B123A00A55897 /* Src */,
+				1E160C9D174B123A00A55897 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1E160C9D174B123A00A55897 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E160C9C174B123A00A55897 /* qsmy-log */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1E160C9E174B123A00A55897 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				1E160CC8174B4D2C00A55897 /* main.cpp */,
+				1E160CA8174B13A600A55897 /* log_prefix.h */,
+				1E160CA9174B13B200A55897 /* config.cpp */,
+				1E160CAA174B13B200A55897 /* config.h */,
+				1E160CAC174B13C200A55897 /* log_service.cpp */,
+				1E160CAD174B13C200A55897 /* log_service.h */,
+				1E160CC5174B1E0A00A55897 /* log_model.cpp */,
+				1E160CC6174B1E0A00A55897 /* log_model.h */,
+				1E160CCD174B6BB500A55897 /* scheduler.cpp */,
+				1E160CCE174B6BB500A55897 /* scheduler.h */,
+				1E160CD0174B6D2B00A55897 /* archive_task.cpp */,
+				1E160CD1174B6D2B00A55897 /* archive_task.h */,
+				1E90D3301761BA3400343B2A /* sys_utility_model.cpp */,
+				1E90D3311761BA3500343B2A /* sys_utility_model.h */,
+				1E7C0A7618460FF90047E880 /* log_queue.cpp */,
+				1E7C0A7718460FF90047E880 /* log_queue.h */,
+			);
+			name = Src;
+			path = "qsmy-log";
+			sourceTree = "<group>";
+		};
+		1E160CB1174B15A300A55897 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				1E160CB4174B15CF00A55897 /* libboost_chrono.a */,
+				1E160CB5174B15CF00A55897 /* libboost_date_time.dylib */,
+				1E160CB6174B15CF00A55897 /* libboost_filesystem.dylib */,
+				1E160CB7174B15CF00A55897 /* libboost_system.dylib */,
+				1E160CB8174B15CF00A55897 /* libboost_thread.dylib */,
+				1E160CB9174B15CF00A55897 /* libmysqlclient.a */,
+				1E160CBA174B15CF00A55897 /* libmysqlcppconn-static.a */,
+				1E160CBB174B15CF00A55897 /* libprotobuf.a */,
+				1E160CB2174B15AD00A55897 /* liblatte.a */,
+			);
+			name = Lib;
+			sourceTree = "<group>";
+		};
+		1E160CC4174B1A2800A55897 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				1E160CAF174B14B900A55897 /* config.json */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E160C9B174B123A00A55897 /* qsmy-log */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E160CA5174B123A00A55897 /* Build configuration list for PBXNativeTarget "qsmy-log" */;
+			buildPhases = (
+				1E160C98174B123A00A55897 /* Sources */,
+				1E160C99174B123A00A55897 /* Frameworks */,
+				1E160C9A174B123A00A55897 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "qsmy-log";
+			productName = "qsmy-log";
+			productReference = 1E160C9C174B123A00A55897 /* qsmy-log */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1E160C94174B123A00A55897 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "汪燕军";
+			};
+			buildConfigurationList = 1E160C97174B123A00A55897 /* Build configuration list for PBXProject "qsmy-log" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1E160C93174B123A00A55897;
+			productRefGroup = 1E160C9D174B123A00A55897 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1E160C9B174B123A00A55897 /* qsmy-log */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E160C98174B123A00A55897 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E160CAB174B13B200A55897 /* config.cpp in Sources */,
+				1E160CAE174B13C200A55897 /* log_service.cpp in Sources */,
+				1E160CC7174B1E0A00A55897 /* log_model.cpp in Sources */,
+				1E160CC9174B4D2C00A55897 /* main.cpp in Sources */,
+				1E160CCF174B6BB500A55897 /* scheduler.cpp in Sources */,
+				1E160CD2174B6D2B00A55897 /* archive_task.cpp in Sources */,
+				1E90D3321761BA3500343B2A /* sys_utility_model.cpp in Sources */,
+				1E7C0A7818460FF90047E880 /* log_queue.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1E160CA3174B123A00A55897 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/log_prefix.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"\"$(SRCROOT)/../../../../../SDK/server/c++/release/lib/mac\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT) $(SRCROOT)/../../../../../SDK/server/c++/release/include/latte $(SRCROOT)/../../../../../SDK/server/c++/release/include/sdk";
+			};
+			name = Debug;
+		};
+		1E160CA4174B123A00A55897 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/log_prefix.h";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"\"$(SRCROOT)/../../../../../SDK/server/c++/release/lib/mac\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT) $(SRCROOT)/../../../../../SDK/server/c++/release/include/latte $(SRCROOT)/../../../../../SDK/server/c++/release/include/sdk";
+			};
+			name = Release;
+		};
+		1E160CA6174B123A00A55897 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../SDK/server/c++/release/lib/mac\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1E160CA7174B123A00A55897 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../SDK/server/c++/release/lib/mac\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1E160C97174B123A00A55897 /* Build configuration list for PBXProject "qsmy-log" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E160CA3174B123A00A55897 /* Debug */,
+				1E160CA4174B123A00A55897 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E160CA5174B123A00A55897 /* Build configuration list for PBXNativeTarget "qsmy-log" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E160CA6174B123A00A55897 /* Debug */,
+				1E160CA7174B123A00A55897 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1E160C94174B123A00A55897 /* Project object */;
+}

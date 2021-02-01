@@ -1,0 +1,20 @@
+CREATE TABLE `T_USER_VIP_STATA` (
+  `date` date NOT NULL COMMENT '日期',
+  `level_1` int(11) NOT NULL,
+  `level_2` int(11) NOT NULL,
+  `level_3` int(11) NOT NULL,
+  `level_4` int(11) NOT NULL,
+  `level_5` int(11) NOT NULL,
+  `level_6` int(11) NOT NULL,
+  `level_7` int(11) NOT NULL,
+  `level_8` int(11) NOT NULL,
+  `level_9` int(11) NOT NULL,
+  `level_10` int(11) NOT NULL,
+  `level_11` int(11) NOT NULL,
+  `level_12` int(11) NOT NULL,
+  `level_13` int(11) NOT NULL,
+  `level_14` int(11) NOT NULL,
+  `level_15` int(11) NOT NULL,
+  `total` int(11) NOT NULL COMMENT '总人数',
+  PRIMARY KEY (`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='VIP统计'

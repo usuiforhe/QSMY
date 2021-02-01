@@ -1,0 +1,8 @@
+CREATE TABLE `P_USER_PILI_MOVIE` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned DEFAULT NULL,
+  `is_get_award` tinyint(1) unsigned DEFAULT NULL,
+  `need_task` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

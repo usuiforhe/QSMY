@@ -1,0 +1,9 @@
+CREATE TABLE `P_USER_MONTH_CARD_MALL` (
+`id`  int UNSIGNED NOT NULL AUTO_INCREMENT ,
+`user_id`  int UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID' ,
+`activity_id`  int UNSIGNED NOT NULL DEFAULT 0 COMMENT '活动ID' ,
+`mc_mall_id`  int UNSIGNED NOT NULL DEFAULT 0 COMMENT '月卡商城对应ID' ,
+`buy_times`  int UNSIGNED NOT NULL DEFAULT 0 COMMENT '购买次数' ,
+PRIMARY KEY (`id`),
+INDEX `user_id` (`user_id`) 
+)

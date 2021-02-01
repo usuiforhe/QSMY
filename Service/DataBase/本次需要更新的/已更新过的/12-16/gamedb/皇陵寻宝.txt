@@ -1,0 +1,97 @@
+DROP TABLE IF EXISTS `T_DRAGON_VALLEY_ASSIST`;
+
+CREATE TABLE `T_DRAGON_VALLEY_ASSIST` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL COMMENT '用户id',
+  `assist_user_id` int(10) unsigned NOT NULL COMMENT '助战id',
+  `add_date` int(10) unsigned NOT NULL COMMENT '添加日期 格式YYYYMMDD',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8 COMMENT='寻龙山谷当日助战记录表';
+
+
+DROP TABLE IF EXISTS `T_DRAGON_VALLEY_BONUS`;
+
+CREATE TABLE `T_DRAGON_VALLEY_BONUS` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL COMMENT '用户id',
+  `assist_id` int(10) unsigned NOT NULL COMMENT '邀请协助的用户id',
+  `assist_lv` int(10) NOT NULL COMMENT '邀请协助的用户级别',
+  `assist_name` varchar(30) NOT NULL COMMENT '邀请协助的用户名',
+  `treasure_type` tinyint(3) DEFAULT NULL COMMENT '宝库类型',
+  `bonus_data` text COMMENT '奖励内容',
+  `add_ts` int(10) unsigned NOT NULL COMMENT '添加时间',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8 COMMENT='寻龙山谷助战奖励表';
+
+
+DROP TABLE IF EXISTS `T_DRAGON_VALLEY_FORMATION`;
+
+CREATE TABLE `T_DRAGON_VALLEY_FORMATION` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `occupy_id` int(10) unsigned NOT NULL COMMENT '占领矿的id',
+  `defend_pos` tinyint(3) unsigned NOT NULL COMMENT '防守阵容中的位置',
+  `formation` blob NOT NULL COMMENT '阵容',
+  PRIMARY KEY (`id`),
+  KEY `occupy_id` (`occupy_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=529 DEFAULT CHARSET=utf8 COMMENT='寻龙山谷助防守阵容表';
+
+DROP TABLE IF EXISTS `T_DRAGON_VALLEY_LOG`;
+
+CREATE TABLE `T_DRAGON_VALLEY_LOG` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL COMMENT '用户id',
+  `treasure_type` tinyint(3) unsigned NOT NULL COMMENT '宝库类型',
+  `name` varchar(30) NOT NULL COMMENT '抢夺人的名称',
+  `lv` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '玩家级别',
+  `bonus` text COMMENT '获得的资源',
+  `lose` text COMMENT '被抢的资源',
+  `add_ts` int(10) unsigned NOT NULL COMMENT '发生时间',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COMMENT='寻龙山谷用户宝库记录表';
+
+
+DROP TABLE IF EXISTS `T_DRAGON_VALLEY_OCCUPY`;
+
+CREATE TABLE `T_DRAGON_VALLEY_OCCUPY` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL COMMENT '用户id',
+  `treasure_id` tinyint(3) unsigned NOT NULL COMMENT '宝库id 1-N N为开采宝库上限，与vip等级有关',
+  `treasure_type` tinyint(3) unsigned NOT NULL COMMENT '搜索到的类型',
+  `user_lv` int(10) unsigned NOT NULL COMMENT '用户级别',
+  `search_ts` int(10) unsigned NOT NULL COMMENT '搜索出的时间',
+  `search_lock_ts` int(10) unsigned NOT NULL COMMENT '搜索加锁时间',
+  `occupy_ts` int(10) unsigned NOT NULL COMMENT '占据时间',
+  `protect_ts` int(10) unsigned NOT NULL COMMENT '保护时间',
+  `speed_up_ts` int(10) unsigned NOT NULL COMMENT '开始加速时间',
+  `end_ts` int(10) unsigned NOT NULL COMMENT '占领到期时间',
+  `coin_output` float unsigned NOT NULL COMMENT '每秒产出效率',
+  `extra_output_type` tinyint(3) unsigned NOT NULL COMMENT '额外产出类型 1、礼券 2、培养丹 3、内气丹 4、练气丹',
+  `npc` text NOT NULL COMMENT '搜索出npc占领的据点时npc的id',
+  `occupy_id` int(10) unsigned NOT NULL COMMENT '搜索出非npc宝库时，对应的占领区id',
+  `attack` text COMMENT '进攻方数据',
+  `defend` text COMMENT '防守方数据',
+  `guard` blob COMMENT '战斗过程胜利方阵容信息',
+  `winner` tinyint(3) unsigned NOT NULL COMMENT '胜利者 0 未开战 1、进攻方胜利 2、防御方胜利',
+  `is_rob` tinyint(3) unsigned NOT NULL COMMENT '是否被抢 0、否 1、是',
+  `bonus` text COMMENT '被抢时剩余的奖励',
+  `guild_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '公会id',
+  `rand` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '随机值',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `treasure_type` (`treasure_type`,`user_lv`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1309 DEFAULT CHARSET=utf8 COMMENT='寻龙山谷占领表';
+
+DROP TABLE IF EXISTS `T_DRAGON_VALLEY_SEARCH`;
+
+CREATE TABLE `T_DRAGON_VALLEY_SEARCH` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL COMMENT '用户id',
+  `search_times` int(10) unsigned NOT NULL COMMENT '当日搜索次数',
+  `update_date` int(10) unsigned NOT NULL COMMENT '最后更新日期 格式YYYYMMDD',
+  `record` text COMMENT '搜索记录 [id,时间]',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COMMENT='寻龙山谷搜索次数记录表';

@@ -1,0 +1,44 @@
+CREATE PROCEDURE `P_REGISTER`(IN p_plat SMALLINT UNSIGNED,
+	IN p_plat_id VARCHAR(128),
+	IN p_user_name VARCHAR(30),
+	IN p_init_power INT UNSIGNED,	IN p_init_endurance INT UNSIGNED,IN p_device_type VARCHAR(50))
+l_pro:BEGIN
+	DECLARE v_user_id INT UNSIGNED;
+	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+	SET v_user_id = 0;
+	IF (SELECT count(`user_id`) FROM `T_USER` where `plat` = p_plat and `plat_id` = p_plat_id) > 0
+	THEN
+		ROLLBACK;
+		SELECT '1203' AS `code`, v_user_id as `user_id`;
+		LEAVE l_pro;
+	END IF;
+	
+	IF (p_user_name <> '' AND (SELECT count(`user_id`) FROM `T_USER` where `user_name` = p_user_name) > 0)
+	THEN
+		ROLLBACK;
+		SELECT '1207' AS `code`, v_user_id as `user_id`;
+		LEAVE l_pro;
+	END IF;
+	
+	IF (p_user_name <> '' AND (SELECT count(`id`) FROM `T_SYS_NAME_FORBIDDEN` where `name` = p_user_name) > 0)
+	THEN
+		ROLLBACK;
+		SELECT '1207' AS `code`, v_user_id as `user_id`;
+		LEAVE l_pro;
+	END IF;
+	INSERT INTO `T_USER`
+	(`plat`, `plat_id`,`user_name`,`power_value`,`reg_ts`,`last_login_ts`,`logout_ts`, `endu_val`, `device_type`) 
+	VALUES
+	(p_plat, p_plat_id, p_user_name, p_init_power, unix_timestamp(), unix_timestamp(),UNIX_TIMESTAMP(),p_init_endurance,p_device_type);
+	SET v_user_id = LAST_INSERT_ID();
+	INSERT INTO `T_USER_MONEY`(`user_id`)values(v_user_id);
+	INSERT INTO `T_USER_EXPLORE`
+	(`user_id`, `chapter_id`, `map_id`)
+	VALUES 
+	(v_user_id, 1, 101);
+	
+	DELETE FROM `T_SYS_NAME_CANDIDATE` WHERE `name` = p_user_name;
+	INSERT INTO T_TODAY_USER (plat, user_id, today) values (p_plat, v_user_id, UNIX_TIMESTAMP(CURDATE()));
+	COMMIT;
+	SELECT '0000' AS `code`, v_user_id as `user_id`;
+END

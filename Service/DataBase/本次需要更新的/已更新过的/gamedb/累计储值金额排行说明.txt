@@ -1,0 +1,3 @@
+ALTER TABLE `T_USER_CHARGE`
+ADD INDEX `user_id` (`user_id`) ,
+ADD INDEX `create_ts` (`create_ts`);

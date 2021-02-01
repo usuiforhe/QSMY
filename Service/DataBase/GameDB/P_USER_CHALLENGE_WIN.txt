@@ -1,0 +1,40 @@
+CREATE PROCEDURE `P_USER_CHALLENGE_WIN`(IN p_user_id INT UNSIGNED,
+	IN p_best_rank INT UNSIGNED,
+	IN p_rank	INT UNSIGNED,
+	IN p_rank_ts	INT UNSIGNED,
+	IN p_point	INT UNSIGNED,
+	IN p_ch_ts	INT UNSIGNED,
+  IN p_win	INT UNSIGNED, IN p_my_win	INT UNSIGNED,	
+  IN p_target_user_id INT UNSIGNED,
+	IN p_target_rank	INT UNSIGNED,
+	IN p_target_rank_ts	INT UNSIGNED,
+	IN p_target_lose	INT UNSIGNED)
+BEGIN
+	SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+	SET AUTOCOMMIT = 0;
+
+	UPDATE T_USER_CHALLENGE
+	SET 
+		`best_rank` = p_best_rank,
+		`rank` = p_rank,
+		`rank_ts` = p_rank_ts,
+		`point` = p_point,
+		`last_ch_ts` = p_ch_ts,
+		`win` = p_win,
+		`my_win` = p_my_win
+	WHERE 
+		`user_id` = p_user_id;
+
+	IF(p_target_user_id > 0)
+	THEN
+		UPDATE T_USER_CHALLENGE 
+		SET 
+			`rank` = p_target_rank,
+			`rank_ts` = p_target_rank_ts,
+			`lose` = p_target_lose
+		WHERE
+			`user_id` = p_target_user_id;
+	END IF;
+
+	COMMIT;
+END

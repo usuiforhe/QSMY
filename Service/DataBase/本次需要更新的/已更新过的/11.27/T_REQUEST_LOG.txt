@@ -1,0 +1,7 @@
+ALTER TABLE `T_REQUEST_LOG`
+MODIFY COLUMN `ms`  float UNSIGNED NOT NULL AFTER `args`,
+MODIFY COLUMN `user_id`  int(12) UNSIGNED NOT NULL DEFAULT 0 AFTER `ms`,
+ADD COLUMN `create_ts`  int(12) UNSIGNED NOT NULL AFTER `user_id`,
+ADD INDEX `user_id` (`user_id`) ,
+ADD INDEX `ms` (`ms`) ,
+ADD INDEX `create_ts` (`create_ts`)

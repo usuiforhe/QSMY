@@ -1,0 +1,46 @@
+ALTER TABLE `T_LOG_SYS_UTIL_RECENT`
+MODIFY COLUMN `sign_up`  bit(1) NOT NULL DEFAULT b'0' COMMENT '是否使用求学' AFTER `challenge`,
+ADD COLUMN `sign_up_new`  bit(1) NOT NULL DEFAULT b'0' COMMENT '是否使用签到' AFTER `sign_up`;
+
+
+
+ALTER TABLE `T_LOG_SYS_UTIL_RECENT`
+ADD COLUMN `warrior_enhance`  bit(1) NOT NULL AFTER `eat_chicken`,
+ADD COLUMN `skill_enhance`  bit(1) NOT NULL AFTER `warrior_enhance`,
+ADD COLUMN `refining`  bit(1) NOT NULL AFTER `skill_enhance`,
+ADD COLUMN `wish`  bit(1) NOT NULL AFTER `refining`;
+
+
+
+ALTER TABLE `T_SYS_UTIL`
+ADD COLUMN `sign_up_new`  int(10) NOT NULL DEFAULT 0 COMMENT '签到' AFTER `sign_up`,
+ADD COLUMN `warrior_enhance`  int(10) NOT NULL DEFAULT 0 COMMENT '弟子强化' AFTER `eat_chicken`,
+ADD COLUMN `skill_enhance`  int(10) NOT NULL DEFAULT 0 COMMENT '技能强化' AFTER `warrior_enhance`,
+ADD COLUMN `refining`  int(10) NOT NULL DEFAULT 0 COMMENT '炼化' AFTER `skill_enhance`,
+ADD COLUMN `wish`  int(10) NOT NULL DEFAULT 0 COMMENT '转魂' AFTER `refining`;
+
+
+ALTER TABLE `T_LOG_SYS_UTIL_RECENT`
+MODIFY COLUMN `warrior_enhance`  bit(1) NOT NULL COMMENT '是否弟子强化' AFTER `eat_chicken`,
+MODIFY COLUMN `skill_enhance`  bit(1) NOT NULL COMMENT '是否技能强化' AFTER `warrior_enhance`,
+MODIFY COLUMN `refining`  bit(1) NOT NULL COMMENT '是否使用炼化' AFTER `skill_enhance`,
+MODIFY COLUMN `wish`  bit(1) NOT NULL COMMENT '是否使用转魂' AFTER `refining`,
+ADD COLUMN `explore_rush`  bit(1) NOT NULL COMMENT '是否使用过关卡扫荡' AFTER `wish`,
+ADD COLUMN `explore_onemore`  bit(1) NOT NULL COMMENT '是否购买过关卡（重置）' AFTER `explore_rush`;
+
+ALTER TABLE `T_SYS_UTIL`
+ADD COLUMN `explore_rush`  int(10) NOT NULL COMMENT '关卡扫荡' AFTER `wish`,
+ADD COLUMN `explore_onemore`  int(10) NOT NULL COMMENT '购买过关卡（重置）' AFTER `explore_rush`;
+
+
+
+//--------------更新
+
+ALTER TABLE `T_LOG_SYS_UTIL`
+ADD COLUMN `sign_up_new`  bit(1) NOT NULL COMMENT '是否使用签到' AFTER `sign_up`,
+ADD COLUMN `warrior_enhance`  bit(1) NOT NULL AFTER `eat_chicken`,
+ADD COLUMN `skill_enhance`  bit(1) NOT NULL AFTER `warrior_enhance`,
+ADD COLUMN `refining`  bit(1) NOT NULL AFTER `skill_enhance`,
+ADD COLUMN `wish`  bit(1) NOT NULL AFTER `refining`,
+ADD COLUMN `explore_rush`  bit(1) NOT NULL AFTER `wish`,
+ADD COLUMN `explore_onemore`  bit(1) NOT NULL AFTER `explore_rush`

@@ -1,0 +1,16 @@
+{
+    //监听端口
+    "port":12322,
+    //请求处理线程数
+    "handle_thread_count":32,
+    //数据库
+    "mysql_server":"tcp://10.10.1.162:3306",
+    //数据库
+    "mysql_db":"PiLi_LogDB",
+    //用户名
+    "mysql_user":"uws_pili",
+    //密码
+    "mysql_password":"123456",
+    //归档运行时间
+    "archive_time":"10:56"
+}

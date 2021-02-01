@@ -1,0 +1,17 @@
+package cache;
+
+//通用响应
+message proRes
+{
+    required uint32 code = 1;          //错误码
+}
+
+//异步更新
+message proAsyncUpdate{
+    //玩家编号
+    required uint32 user_id = 1;
+    //更新key
+    required string key = 2;
+    //更新SQL语句
+    required string sql = 3;
+}

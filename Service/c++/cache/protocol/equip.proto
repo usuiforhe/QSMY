@@ -1,0 +1,80 @@
+package cache;
+
+//装备
+message proEquip{
+    required uint64 id = 1;             //唯一编号
+    required uint32 sid = 2;            //静态编号
+    required uint32 exp = 3;            //经验值
+    required uint32 level = 4;          //等级
+    required uint32 gem = 5;            //宝石
+    required uint32 pos = 6;            //位置
+    required uint32 type = 7;           //类型
+    required uint32 color = 8;          //颜色
+    required uint32 refining = 9;       //精炼等级
+    required uint32 refining_exp = 10;  //精炼经验值
+}
+
+//获得装备 返回proEquipRes
+message proGetEquip{
+    required uint32 user_id = 1;        //玩家编号
+    required uint64 id = 2;             //唯一编号
+}
+
+//获得装备列表  返回proEquipsRes
+message proGetEquips{
+    required uint32 user_id = 1;        //玩家编号
+}
+
+//根据阵容位置获得装备列表  返回proEquipsRes
+message proGetEquipsByPos{
+    required uint32 user_id = 1;        //玩家编号
+    repeated uint32 pos_list = 2;       //阵容位置编号列表
+}
+
+//添加装备  返回proEquipRes
+message proAddEquip{
+    required uint32 user_id = 1;        //玩家编号
+    required proEquip equip = 2;        //装备信息
+}
+
+//添加装备列表  返回proEquipsRes
+message proAddEquips{
+    required uint32 user_id = 1;        //玩家编号
+    repeated proEquip equips = 2;        //装备列表
+}
+
+//更新装备  返回proRes
+message proUpdateEquip{
+    required uint32 user_id = 1;        //玩家编号
+    required proEquip equip = 2;        //装备信息
+}
+
+//批量更新装备  返回proRes
+message proUpdateEquips{
+    required uint32 user_id = 1;        //玩家编号
+    repeated proEquip equips = 2;       //装备列表
+}
+
+//删除装备 返回proRes
+message proRemoveEquip{
+    required uint32 user_id = 1;        //玩家编号
+    required uint64 equip_id = 2;        //装备信息
+}
+
+//批量删除装备 返回proRes
+message proRemoveEquips{
+    required uint32 user_id = 1;        //玩家编号
+    repeated uint64 equip_ids = 2;         //装备编号列表
+}
+
+//包含装备的结果
+message proEquipRes{
+    required uint32 code = 1;           //错误码
+    optional proEquip equip = 2;        //装备信息
+}
+
+//包含装备列表的结果
+message proEquipsRes{
+    required uint32 code = 1;           //错误码
+    repeated proEquip equips = 2;       //装备列表
+}

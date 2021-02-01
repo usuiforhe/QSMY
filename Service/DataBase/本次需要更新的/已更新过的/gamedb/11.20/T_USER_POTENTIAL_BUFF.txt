@@ -1,0 +1,5 @@
+ALTER TABLE `T_USER_POTENTIAL_BUFF`
+DROP COLUMN `create_ts`,
+ADD COLUMN `create_ts`  timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间' AFTER `act_status`;
+
+update T_USER_POTENTIAL_BUFF set create_ts = '2014-11-20 00:00:00';

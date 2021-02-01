@@ -1,0 +1,10 @@
+CREATE TABLE `P_USER_GROWTH_FUND` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `growth_fund` tinyint(3) unsigned NOT NULL COMMENT '成长基金类型',
+  `rewards` int(11) unsigned NOT NULL,
+  `buytime` int(11) unsigned NOT NULL,
+  `reg_date` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

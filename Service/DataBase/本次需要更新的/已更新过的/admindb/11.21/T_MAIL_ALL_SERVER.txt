@@ -1,0 +1,15 @@
+CREATE TABLE `T_MAIL_ALL_SERVER` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) unsigned NOT NULL COMMENT '申请者id',
+  `admin_user` varchar(64) NOT NULL COMMENT '申请者姓名',
+  `site_id` int(6) NOT NULL COMMENT '大区id',
+  `server_id` int(6) NOT NULL COMMENT '服务器id',
+  `mail_title` varchar(32) NOT NULL COMMENT '邮件标题',
+  `mail_content` varchar(512) NOT NULL COMMENT '邮件内容',
+  `attachment` text COMMENT '附件信息',
+  `start_ts` date DEFAULT NULL COMMENT '开始时间',
+  `end_ts` date DEFAULT NULL COMMENT '结束时间',
+  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `status` smallint(2) NOT NULL DEFAULT '0' COMMENT '0,未发送1发送',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8

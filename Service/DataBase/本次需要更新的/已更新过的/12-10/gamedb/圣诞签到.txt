@@ -1,0 +1,2 @@
+﻿ALTER TABLE `T_TIMED_ACTIVITY`
+ADD COLUMN `is_new_server`  tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否进入新服活动 0不进入 1进入' AFTER `type`;

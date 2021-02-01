@@ -1,0 +1,10 @@
+CREATE TABLE `P_USER_EQUIP_REFINERY` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `item_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '晶魂数量',
+  `exchange` varchar(255) NOT NULL COMMENT '兑换列表',
+  `create_ts` int(11) unsigned NOT NULL DEFAULT '0',
+  `update_ts` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;

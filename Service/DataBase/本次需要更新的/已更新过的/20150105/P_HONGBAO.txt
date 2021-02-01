@@ -1,0 +1,12 @@
+CREATE TABLE `P_HONGBAO` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
+  `username` varchar(32) NOT NULL COMMENT '姓名',
+  `areanumber` varchar(32) NOT NULL COMMENT '区号',
+  `phone` varchar(32) NOT NULL COMMENT '电话',
+  `address` varchar(512) NOT NULL COMMENT '地址',
+  `state` int(10) NOT NULL DEFAULT '0' COMMENT '状态0表示可以修改1表示不能修改',
+  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8

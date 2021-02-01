@@ -1,0 +1,12 @@
+更新此SP需求
+
+1、手动清空 T_LOG_RECENT T_LOG_SYS_UTIL_RECENT 以免造成数据库出问题
+
+2、手动清理
+	DELETE FROM `T_LOG_SYS_UTIL` WHERE `date` < CURDATE(); 以免造成数据库出问题
+
+
+3、更新最新的sp
+
+
+此上操作对所有服务器生效，包括测试机,包括已开服的DB和未开服的DB

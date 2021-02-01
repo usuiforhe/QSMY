@@ -1,0 +1,181 @@
+DROP TABLE IF EXISTS `T_GUILD`;
+
+CREATE TABLE `T_GUILD` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT COMMENT '公会id',
+  `name` varchar(64) DEFAULT NULL COMMENT '公会名',
+  `founder_id` int(12) DEFAULT '0' COMMENT '创建者uid',
+  `leader_id` int(12) DEFAULT '0' COMMENT '会长uid',
+  `sign_value` int(12) DEFAULT '0' COMMENT '有效签到次数',
+  `con_value` int(12) DEFAULT '0' COMMENT '总贡献值',
+  `lv` int(12) DEFAULT '0' COMMENT '等级',
+  `num` int(12) DEFAULT '0' COMMENT '会员数量',
+  `king_lv` int(12) DEFAULT '0' COMMENT '王道等级',
+  `knight_lv` int(12) DEFAULT '0' COMMENT '侠道等级',
+  `king_con_value` bigint(12) unsigned DEFAULT '0' COMMENT '王道贡献值',
+  `knight_con_value` int(12) DEFAULT '0' COMMENT '侠道贡献值',
+  `apply_accept_num` int(12) DEFAULT '0' COMMENT '批准申请次数',
+  `assis_1` int(12) DEFAULT '0' COMMENT '助理1',
+  `assis_2` int(12) DEFAULT '0' COMMENT '助理2',
+  `assis_3` int(12) DEFAULT '0' COMMENT '助理3',
+  `announcement` varchar(512) DEFAULT NULL COMMENT '公告',
+  `create_ts` int(12) DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `lv` (`lv`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `T_GUILD_BOSS`;
+
+CREATE TABLE `T_GUILD_BOSS` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增编号',
+  `guild_id` int(10) unsigned NOT NULL COMMENT '公会编号',
+  `name` varchar(64) NOT NULL,
+  `lv` int(10) NOT NULL,
+  `week` int(10) unsigned NOT NULL COMMENT '周',
+  `fight` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '战斗力',
+  `target` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '宣战目标',
+  `target_name` varchar(128) NOT NULL COMMENT '宣战目标名称',
+  `declare_date` int(11) unsigned NOT NULL COMMENT '宣战日期',
+  `dmg` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '总灵元',
+  `last_dmg` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '上周总灵元',
+  `dmg_daily` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '当天获得总灵元',
+  `rob_dmg_daily` bigint(20) NOT NULL DEFAULT '0' COMMENT '当天纷争获得总灵元',
+  `rank` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排名',
+  `settle_ts` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '结算时间',
+  `today` int(12) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `guild_today` (`guild_id`,`today`),
+  KEY `guild_id` (`guild_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7362 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `T_GUILD_BOSS_HATRED`;
+
+CREATE TABLE `T_GUILD_BOSS_HATRED` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `guild_id` int(12) NOT NULL DEFAULT '0' COMMENT '抢夺门派ID',
+  `name` varchar(128) NOT NULL,
+  `target_id` int(12) NOT NULL DEFAULT '0' COMMENT '被抢夺门派ID',
+  `dmg` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '被抢夺灵元数量',
+  PRIMARY KEY (`id`),
+  KEY `target_id` (`target_id`),
+  KEY `guild_id` (`guild_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=453 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `T_GUILD_CHARGE_REWARD`;
+
+CREATE TABLE `T_GUILD_CHARGE_REWARD` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `period` int(11) unsigned NOT NULL COMMENT '周期，时间戳',
+  `guild_id` int(11) unsigned NOT NULL COMMENT '公会编号',
+  `rewards` varchar(1023) NOT NULL DEFAULT '[]' COMMENT '奖励列表',
+  `charge_members` varchar(1023) NOT NULL DEFAULT '[]' COMMENT '充值玩家列表',
+  `amount` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '充值金额',
+  `drawn_members` varchar(1023) NOT NULL DEFAULT '[]' COMMENT '已领取奖励的玩家列表',
+  `update_ts` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `period_guild` (`period`,`guild_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=307 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `T_GUILD_LOG`;
+
+CREATE TABLE `T_GUILD_LOG` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `guild_id` int(12) unsigned NOT NULL DEFAULT '0',
+  `log_type` int(6) unsigned NOT NULL DEFAULT '0',
+  `create_ts` int(12) unsigned NOT NULL DEFAULT '0',
+  `params` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `guild_id` (`guild_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `T_USER_GUILD`;
+
+CREATE TABLE `T_USER_GUILD` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` int(12) DEFAULT '0' COMMENT '用户ID',
+  `name` varchar(64) DEFAULT NULL COMMENT '用户名',
+  `guild_id` int(12) DEFAULT '0' COMMENT '公会ID',
+  `con_lv` int(12) DEFAULT '0' COMMENT '爵位等级',
+  `con_value` int(12) DEFAULT '0' COMMENT '帮贡',
+  `sign_ts` int(12) DEFAULT '0' COMMENT '上次签到时间戳',
+  `ques_id` int(12) DEFAULT '0' COMMENT '当前问答题目ID',
+  `ques_ts` int(12) DEFAULT '0' COMMENT '上次问答时间戳',
+  `king_ts` int(12) DEFAULT '0' COMMENT '当日捐献个数',
+  `knight_ts` int(12) DEFAULT '0' COMMENT '最后捐献时间戳',
+  `king_times` int(12) DEFAULT '0' COMMENT '王道捐献次数',
+  `knight_times` int(12) DEFAULT '0' COMMENT '侠道捐献个数',
+  `pos` int(12) DEFAULT '0' COMMENT '职位',
+  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `remain_con_value` int(12) NOT NULL DEFAULT '0' COMMENT '剩余帮贡',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `guild_id` (`guild_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `T_USER_GUILD_APPLY`;
+
+CREATE TABLE `T_USER_GUILD_APPLY` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(12) DEFAULT '0' COMMENT '玩家id',
+  `name` varchar(64) DEFAULT NULL COMMENT '玩家名',
+  `guild_id` int(12) DEFAULT '0' COMMENT '公会id',
+  `lv` int(12) DEFAULT '0' COMMENT '玩家等级',
+  `fight` int(12) DEFAULT '0' COMMENT '玩家战斗力',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `T_USER_GUILD_BOSS`;
+
+CREATE TABLE `T_USER_GUILD_BOSS` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL COMMENT '玩家编号',
+  `user_name` varchar(128) NOT NULL,
+  `user_lv` int(12) NOT NULL,
+  `guild_id` int(10) unsigned NOT NULL COMMENT '公会编号',
+  `guild_name` varchar(128) NOT NULL,
+  `week` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '周',
+  `date` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '日',
+  `fight` int(11) NOT NULL DEFAULT '0' COMMENT '战斗力',
+  `cur_fight` int(11) NOT NULL DEFAULT '0' COMMENT '当前战斗力',
+  `round` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '回合',
+  `dmg_total` bigint(20) NOT NULL DEFAULT '0' COMMENT '本周总伤害',
+  `dmg_daily` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '当日总伤害',
+  `dmg_for_rob` bigint(20) NOT NULL DEFAULT '0' COMMENT '可被夺取的伤害(本轮军争)',
+  `dmg_for_rob_base` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '夺取伤害计算的基数(本轮军争)',
+  `dmg_for_rob_old` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '本次军争开始时可被夺取伤害',
+  `rob_dmg` bigint(20) NOT NULL DEFAULT '0' COMMENT '本次军争抢夺过来的伤害',
+  `rob_dmg_daily` bigint(20) NOT NULL DEFAULT '0',
+  `rob_blood` int(6) NOT NULL DEFAULT '0' COMMENT '每次军争可伤血量',
+  `attack_ts` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后攻击时间',
+  `avail_times` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '剩余次数',
+  `paid_times` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '剩余可购买次数',
+  `leader_id` int(12) NOT NULL DEFAULT '0' COMMENT '领队弟子id',
+  `formation` blob NOT NULL COMMENT '阵型数据',
+  `leader_dress_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '队长时装编号',
+  `target` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '对手公会',
+  `settle_ts` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '结算时间',
+  `rescue_times` int(12) NOT NULL DEFAULT '0',
+  `bonus_scores` int(12) NOT NULL DEFAULT '0',
+  `today` int(12) NOT NULL DEFAULT '0',
+  `hurt_ts` int(12) DEFAULT '0',
+  `rescue_ts` int(12) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_today` (`user_id`,`today`),
+  KEY `guild_id` (`guild_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `T_USER_GUILD_MALL`;
+
+CREATE TABLE `T_USER_GUILD_MALL` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `user_id` int(11) unsigned NOT NULL COMMENT '用户编号',
+  `items` varchar(1023) NOT NULL COMMENT '兑换项列表',
+  `exchange_members` varchar(128) NOT NULL COMMENT '玩家兑换记录',
+  `refresh_time` int(11) unsigned NOT NULL COMMENT '刷新时间',
+  `refresh_count` int(5) unsigned NOT NULL COMMENT '刷新次数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;

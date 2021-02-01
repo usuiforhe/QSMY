@@ -1,0 +1,13 @@
+CREATE TABLE `P_USER_GUILD_CHARGE` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `aid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '活动ID',
+  `user_id` int(12) DEFAULT '0' COMMENT '用户ID',
+  `name` varchar(64) DEFAULT NULL COMMENT '用户名',
+  `guild_id` int(12) DEFAULT '0' COMMENT '公会ID',
+  `guild_name` varchar(64) DEFAULT NULL COMMENT '帮派名',
+  `amount` int(12) DEFAULT '0' COMMENT '充值金额',
+  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_aid_user_id` (`aid`,`user_id`),
+  KEY `idx_aid_guild_id` (`aid`,`guild_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8

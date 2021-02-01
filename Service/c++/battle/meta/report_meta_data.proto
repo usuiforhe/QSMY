@@ -1,0 +1,27 @@
+package battle;
+
+//pve战报元数据
+message report_meta_data {
+    required uint32 user_id = 1;    //玩家编号
+    required uint32 scene = 2;      //关卡编号
+    required bool win = 3;          //是否胜利
+    required uint32 grade = 4;      //评分
+    required float fight_percent = 5;   //剩余战斗力百分比
+    required bytes content = 6;    //战报正文
+}
+
+message hp_unit_meta_data {
+    required uint32 position = 1;   //位置编号
+    required uint32 hp = 2;         //剩余生命值
+}
+
+message hp_report_meta_data {
+    required uint32 user_id = 1;    //玩家编号
+    required uint32 scene = 2;      //关卡编号
+    required bool win = 3;          //是否胜利
+    required uint32 grade = 4;      //评分
+    required float fight_percent = 5;   //剩余战斗力百分比
+    repeated hp_unit_meta_data winner_units = 6;    //胜利方单位列表
+
+    required bytes content = 7;     //战报正文
+}

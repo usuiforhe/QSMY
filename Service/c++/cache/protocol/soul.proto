@@ -1,0 +1,56 @@
+package cache;
+
+//魂魄
+message proSoul{
+    required uint32 soul_id = 1;        //静态编号
+    required uint32 num = 2;            //数量
+    required uint32 protect_ts = 3;     //保护时间
+}
+
+//获得魂魄 返回proSoulRes
+message proGetSoul{
+    required uint32 user_id = 1;        //玩家编号
+    required uint32 soul_id = 2;        //魂魄编号
+}
+
+//获得魂魄列表 返回proSoulsRes
+message proGetSouls{
+    required uint32 user_id = 1;        //玩家编号
+    repeated uint32 souls = 2;          //要获取的魂魄编号列表
+}
+
+//添加魂魄 返回proRes
+message proAddSoul{
+    required uint32 user_id = 1;        //玩家编号
+    required proSoul soul = 2;          //魂魄信息
+}
+
+//批量添加魂魄 返回proRes
+message proAddSouls{
+    required uint32 user_id = 1;        //玩家编号
+    repeated proSoul souls = 2;         //魂魄列表
+}
+
+//删除魂魄 返回proRes
+message proRemoveSoul{
+    required uint32 user_id = 1;        //玩家编号
+    required proSoul soul = 2;          //魂魄信息
+}
+
+//批量删除魂魄 返回proRes
+message proRemoveSouls{
+    required uint32 user_id = 1;        //玩家编号
+    repeated proSoul souls = 2;         //魂魄列表
+}
+
+//包含魂魄的结果
+message proSoulRes{
+    required uint32 code = 1;           //错误码
+    optional proSoul soul = 2;          //魂魄信息
+}
+
+//包含魂魄列表的结果
+message proSoulsRes{
+    required uint32 code = 1;           //错误码
+    repeated proSoul souls = 2;         //魂魄列表
+}

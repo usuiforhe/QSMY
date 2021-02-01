@@ -1,0 +1,81 @@
+package battle;
+
+//装备元数据
+message equip_meta_data{
+    required uint32 sid = 1;            //装备静态编号
+    required uint32 level = 2;          //装备等级
+}
+
+//技能元数据
+message skill_meta_data{
+    required uint32 sid = 1;            //技能编号
+    required uint32 level = 2;          //技能等级
+}
+
+//单位元数据
+message unit_meta_data{
+    enum unit_type{
+        unit_type_normal = 1;           //普通单位
+        unit_type_gundam = 2;           //高达
+        unit_type_assist = 3;           //场外
+    }
+    required uint32 sid = 1;            //单位编号
+    required uint32 level = 2;          //等级
+    required uint32 hp = 3;             //生命值
+    required uint32 attack = 4;         //攻击
+    required uint32 defense = 5;        //防御
+    required uint32 speed = 6;          //速度
+    required uint32 dodge_rate = 7;     //闪避率
+    required uint32 critical_rate = 8;  //暴击率
+    required uint32 block_rate = 9;     //格挡率
+    required uint32 position = 10;      //站位
+    repeated skill_meta_data skills = 11;   //技能
+    required uint32 size = 12;          //站位
+    required int32 up = 13;             //突破等级
+    required float skill_fight = 14;    //技能战斗力系数
+    required bool is_boss = 15;       //是否boss
+    required uint32 max_hp = 16;       //最大生命值
+    optional uint32 dress_id = 17;      //时装编号
+    optional bool is_show = 18;       //是否显示
+    
+    required uint32 hit_rate = 19;       //命中率
+    required uint32 locationg = 20;		//英雄类型
+    required uint32 tough_rate = 21;	//抗暴率
+    required uint32 break_rate = 22;	//破击率
+    required uint32 heal_rate = 23;		//恢复率
+    required uint32 criticaldam_rate = 24;//暴击伤害率
+    required uint32 event_hurt = 25;	//最终伤害
+    required uint32 event_injury = 26;	//最终免伤
+    required bool skill_spec = 27;	//技能特殊效果1,0
+    required bool first_turn = 28;	//第一回合是否释放技能1,0
+    required string attack_spec = 29;//该英雄普通攻击时有10%附带1011DEBUFF 如buffid,概率
+    required uint32 immu_debuff = 30;	//免疫DEBUFF如免疫10000
+    required uint32 double_atk = 31;	//该英雄普通攻击时有10%额外再攻击一次
+    required uint32 atk_heal = 32;		//普通攻击的吸血比例
+    required uint32 highhp_dam = 33;	//自身生命高于目标时，对目标伤害 +XX%
+    required uint32 highhp_def = 34;	//自身生命高于目标时，被攻击时伤害减少 XX%
+    required string fieldbuff = 35;		//该单位在场上，增加所有 XX 类型英雄 XX% 的 XX属性;如:类型,属性,值
+    required bool heal_debuff = 36;		//治疗DEBUFF
+    required uint32 skill_resist = 37;		//技能抗性
+    optional unit_type type = 38;       //单位类型
+    optional string init_buff = 39;       //初始化BUFF
+}
+
+//势力元数据
+message force_meta_data{
+    required uint32 user_id = 1;        //玩家编号
+    required string name = 2;           //名字
+    required uint32 leader_sid = 3;     //队长静态编号
+    required uint32 level = 4;          //等级
+    required bool is_mob = 5;           //是否怪物
+    repeated unit_meta_data units = 6;  //单位列表
+}
+
+//关卡元数据
+message scene_meta_data{
+    required uint32 sid = 1;            //场景编号
+    required uint32 type = 2;           //类型
+    required uint32 map_id = 3;         //关卡编号
+    required force_meta_data left_force = 4;       //左侧势力
+    optional force_meta_data right_force = 5;       //右侧势力
+}

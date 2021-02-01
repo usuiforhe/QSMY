@@ -1,0 +1,1 @@
+action_buff.o: ../../battle/buff/action_buff.cpp

@@ -1,0 +1,8 @@
+
+
+ALTER TABLE `T_SERVER`
+ADD COLUMN `state`  int(10) NOT NULL DEFAULT 1 COMMENT '1火爆2新区3维护' AFTER `url`,
+ADD COLUMN `is_test`  int(10) NOT NULL DEFAULT 0 COMMENT '是否是测试服' AFTER `state`,
+ADD COLUMN `sys_type`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '系统类型' AFTER `is_test`,
+ADD COLUMN `top_order`  int(10) NOT NULL DEFAULT 0 COMMENT '置顶顺序' AFTER `sys_type`;
+

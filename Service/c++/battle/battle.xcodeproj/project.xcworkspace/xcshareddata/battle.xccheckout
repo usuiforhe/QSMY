@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>56279A45-FC9D-4A43-88A4-8EF72BE8750D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>battle</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>de3ecbe5-052d-7f49-97eb-7d370bc80e60++4647</key>
+		<string>http://10.10.1.170/svn/Mobile-QS/QSMY/trunk</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>server/c++/battle/battle.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>de3ecbe5-052d-7f49-97eb-7d370bc80e60++4647</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>de3ecbe5-052d-7f49-97eb-7d370bc80e60++4647</key>
+		<string>http://10.10.1.170/svn/Mobile-QS</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://10.10.1.170/svn/Mobile-QS/QSMY/trunk/server/c++/battle/battle.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>de3ecbe5-052d-7f49-97eb-7d370bc80e60++4647</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>de3ecbe5-052d-7f49-97eb-7d370bc80e60++4647</string>
+			<key>IDESourceControlWCCName</key>
+			<string>trunk</string>
+		</dict>
+	</array>
+</dict>
+</plist>
